@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>Lucky Ball</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div id="step" class="step-div">
+    <input id="goMoreText" value="10"></input>
+    <button id="goMore" data-text-start="多个抽奖" data-text-stop="结束" data-action="start"></button>
+</div>
+
+<button id="go" data-text-start="单个抽奖" data-text-stop="结束" data-action="start"></button>
+
+<div id="container">
+    <ul id="balls">
+    </ul>
+    <ul id="lucky-balls">
+    </ul>
+</div>
+
+<script src="/javascripts/seajs/sea.js"></script>
+<script>
+
+    // Set configuration
+    seajs.config({
+        base: "/javascripts/",
+        alias: {
+            "jquery": "jquery/jquery/1.10.1/jquery.js",
+            "jquery-easing": "jquery/easing/1.3.0/easing.js"
+        }
+    });
+
+    seajs.use("/javascripts/main");
+</script>
+
+</body>
+</html>
