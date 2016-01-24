@@ -1,39 +1,51 @@
-<!doctype html>
-<html>
-<head>
-    <title>Lucky Ball</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-<body>
-<div id="step" class="step-div">
-    <input id="goMoreText" value="10"></input>
-    <button id="goMore" data-text-start="多个抽奖" data-text-stop="结束" data-action="start"></button>
+<%- include header.html %>
+<div class="container lottery-container">
+    <div class="step-div">
+        <input id="goMoreText" type="text" class="form-control lottery-text" value="<%=peopleNum %>"></input>
+        <button id="goMore" type="button" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off" data-text-start="抽奖" data-text-stop="结束" data-action="start">抽奖</button>
+        <button id="go" type="button" class="btn" data-text-start="单个抽奖" data-text-stop="结束" data-action="start"></button>
+    </div>
+
+    <div id="lotterycontainer">
+        <ul id="balls">
+        </ul>
+        <div class="step-div">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">查看</button>
+            <button id="save" type="button" class="btn">保存</button>
+        </div>
+        <ul id="lucky-balls">
+        </ul>
+    </div>
 </div>
 
-<button id="go" data-text-start="单个抽奖" data-text-stop="结束" data-action="start"></button>
-
-<div id="container">
-    <ul id="balls">
-    </ul>
-    <ul id="lucky-balls">
-    </ul>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">中奖名单(奖品:<%=times[num].price%>)</h4>
+            </div>
+            <ul class="modal-body">
+            </ul>
+        </div>
+    </div>
 </div>
-
 <script src="/javascripts/seajs/sea.js"></script>
+<script src="/javascripts/jquery/jquery/1.10.1/jquery.js"></script>
 <script>
-
+    var activeTime = <%= num %>;
     // Set configuration
     seajs.config({
         base: "/javascripts/",
         alias: {
             "jquery": "jquery/jquery/1.10.1/jquery.js",
-            "jquery-easing": "jquery/easing/1.3.0/easing.js"
+            "jquery-easing": "jquery/easing/1.3.0/easing.js",
+            "bootstrap" : "bootstrap/bootstrap.min.js"
         }
     });
 
     seajs.use("/javascripts/main");
 </script>
 
-</body>
-</html>
+<%- include footer.html %>

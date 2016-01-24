@@ -1,15 +1,105 @@
 var express = require('express'),
     router = express.Router(),
-    app = express();
+    app = express(),
+    User = require('../models/user'),
+    Times = require('../models/times'),
+    _ = require('underscore');
+
+var times, users;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+    res.render('index', {
+        title : '抽奖系统',
+        times : []
+    });
+});
+
+/* GET 抽奖重置. */
+router.get('/reset', function(req, res, next) {
+    times = null;
+    users = null;
+    res.render('index', {
+        title : '抽奖系统',
+        times : []
+    });
+});
+
+/* get users */
+router.get('/users', function(req, res, next) {
+    if(users){
+        res.send({
+            users : users
+        });
+        return
+    }
+    User.get(function(temp){
+        users = temp[0].data;
+        res.send({
+            users : users
+        });
+    });
 });
 
 /* GET lottery page. */
 router.get('/lottery', function(req, res, next) {
-    res.render('lottery', { title: 'Express' });
+    if(times){
+        res.render('lottery', {
+            title: '抽奖啦',
+            times : times
+        });
+        return
+    }
+    Times.get(function(temp) {
+        times = temp;
+        res.render('lottery', {
+            title: '抽奖啦',
+            times : times
+        });
+    });
+});
+
+/* GET lottery page. */
+router.get('/save', function(req, res, next) {
+    var list = req.query.list,
+        num = req.query.num,
+        arr = [];
+
+    users = _.filter(users, function(user){
+        var temp = true;
+        _.each(list, function(n){
+            if(user[0] == n){
+                arr.push(user[0]);
+                temp = false;
+            }
+        });
+        return temp;
+    });
+    times[num].people = arr;
+    res.send("success");
+});
+
+/* GET lottery page. */
+router.get('/lottery/:num?', function(req, res, next) {
+    var num = req.params.num || 0;
+    if(times){
+        res.render('lottery', {
+            title : '抽奖啦',
+            times : times,
+            num : num,
+            peopleNum : times[num].num
+        });
+        return
+    }
+    Times.get(function(temp) {
+        times = temp;
+        res.render('lottery', {
+            title: '抽奖啦',
+            times : times,
+            num : num,
+            peopleNum : times[num].num
+        });
+    });
 });
 
 module.exports = router;

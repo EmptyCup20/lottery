@@ -16,11 +16,20 @@ ul li {
   list-style: none;
 }
 
-#container {
+.lottery-container{
+  margin-top: 10px;
+}
+
+.lottery-text{
+  float: left;
+  margin-right: 10px;
+  width: 200px;
+}
+
+#lotterycontainer {
   width: 900px;
   margin: 10px auto;
   position: relative;
-  background: url(https://a248.e.akamai.net/assets.github.com/images/spinners/octocat-spinner-32.gif) no-repeat 45% 25%;
 }
 
 #balls {
@@ -50,19 +59,16 @@ ul li {
   cursor: pointer;
 }
 
+#goMore{
+  width: 100px;
+}
+
 #go {
-  width: 200px;
-  height: 50px;
-  display: block;
-  margin: 0 auto;
-  font-size: 22px;
-  border: none;
-  background: none;
-  color: #999;
+  width: 100px;
 }
 
 .step-div{
-  width: 300px;
+  width: 500px;
   height: 50px;
   display: block;
   margin: 0 auto;
@@ -74,7 +80,7 @@ ul li {
 
 #balls li.selected {
   color: #fff;
-  background: #f60;
+  background: #ff001d;
   font-size: 40px;
   height: 200px;
   width: 200px;
@@ -101,5 +107,5 @@ ul li {
   margin: 5px 10px;
   font-weight: bold;
   color: #fff;
-  background: #f60;
+  background: #ff001d;
 }

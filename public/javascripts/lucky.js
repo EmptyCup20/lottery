@@ -2,6 +2,7 @@ define(function(require, exports, module) {
 
   var $ = require('jquery');
   require('jquery-easing');
+  require('bootstrap');
 
   var User = require('./user');
 
@@ -13,11 +14,11 @@ define(function(require, exports, module) {
     users: [],
 
     init: function(data) {
-      $('#container').css('background', 'none');
+      $('#lotterycontainer').css('background', 'none');
 
       this.data = data;
-      this.users = data.map(function(name) {
-        return new User(name, data[name]);
+      this.users = data.map(function(obj) {
+        return new User(obj[0], data[obj[0]]);
       });
 
       this._bindUI();
@@ -45,7 +46,7 @@ define(function(require, exports, module) {
       }
 
       var triggerMore = document.querySelector('#goMore');
-      triggerMore.innerHTML = trigger.getAttribute('data-text-start');
+      triggerMore.innerHTML = triggerMore.getAttribute('data-text-start');
       triggerMore.addEventListener('click', goMore, false);
 
       function goMore() {
@@ -57,9 +58,32 @@ define(function(require, exports, module) {
         else {
           triggerMore.setAttribute('data-action', 'start');
           triggerMore.innerHTML = triggerMore.getAttribute('data-text-start');
-          that.stop(10);
+          that.stop($("#goMoreText").val() - 1);
         }
       }
+
+      $('#myModal').on('shown.bs.modal', function (e) {
+        $(".modal-body").html($("#lucky-balls").html());
+      })
+
+        // bind #lucky-balls
+        $('#save').on('click', function(e) {
+            var list = [];
+            $("#lucky-balls li").each(function(){
+                list.push($(this).html())
+            })
+            $.ajax({
+                url : "/save",
+                type : "get",
+                data : {
+                    num : activeTime,
+                    list : list
+                },
+                success : function(data){
+                    window.location.href = "/lottery/" + (activeTime + 1);
+                }
+            })
+        })
 
       // bind #lucky-balls
       $('#lucky-balls').on('click', 'li', function(e) {

@@ -4,12 +4,20 @@ if (document.attachEvent) {
 }
 
 define(function(require) {
+  var $ = require('jquery');
 
-  var data = require('./data');
-  var times = require('./times');
-  var lucky = require('./lucky');
+  $.ajax({
+    url : "/users",
+    type : "get",
+      data : {
+          num : activeTime
+      },
+    success : function(data){
+      var lucky = require('./lucky');
 
-  lucky.init(data);
+      lucky.init(data.users);
+    }
+  })
 
 });
 
