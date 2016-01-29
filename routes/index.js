@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     app = express(),
+    fs = require('fs'),
     User = require('../models/user'),
     Times = require('../models/times'),
     _ = require('underscore');
@@ -76,6 +77,18 @@ router.get('/save', function(req, res, next) {
         return temp;
     });
     times[num].people = arr;
+
+    // 写入log.txt文件
+    var str = "\n" + new Date() + "   " + times[num].name + "\n中奖名单:"
+        + arr.join(",");
+
+    fs.appendFile("config/log.txt", str, function(err){
+        if(err)
+            console.log("fail " + err);
+        else
+            console.log("写入文件ok");
+    });
+
     res.send("success");
 });
 

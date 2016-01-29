@@ -9,7 +9,11 @@ a {
 
 body {
   font: 20px "Hiragino Sans GB", sans-serif;
-  background: #eee;
+  min-height: 800px;
+  background: url("/images/lottry_bg.jpg") no-repeat;
+  filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+  -moz-background-size:100% 100%;
+  background-size:100% 100%;
 }
 
 ul li {
@@ -17,7 +21,7 @@ ul li {
 }
 
 .lottery-container{
-  margin-top: 10px;
+  margin-top: 60px;
 }
 
 .lottery-text{
@@ -49,9 +53,9 @@ ul li {
   height: 40px;
   overflow: hidden;
   font-size: 12px;
-  background: #333;
+  background: url("/images/ball.png");
   color: #ddd;
-  opacity: .5;
+  opacity: 1;
   text-align: center;
   line-height: 43px;
   border-radius: 30px;
@@ -68,6 +72,7 @@ ul li {
 }
 
 .step-div{
+  text-align: center;
   width: 500px;
   height: 50px;
   display: block;
@@ -80,7 +85,10 @@ ul li {
 
 #balls li.selected {
   color: #fff;
-  background: #ff001d;
+  background: url("/images/lottoryball.png");
+  filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+  -moz-background-size:100% 100%;
+  background-size:100% 100%;
   font-size: 40px;
   height: 200px;
   width: 200px;
@@ -90,7 +98,11 @@ ul li {
   -webkit-transition-property: width, height, font;
   z-index: 100;
 }
-
+.lucky-balls-div{
+  min-height: 100px;
+  min-width: 1280px;
+  display: inline-block;
+}
 #lucky-balls {
   padding: 20px;
   margin: 10px 0;
@@ -103,9 +115,26 @@ ul li {
   top: auto !important;
   width: 40px !important;
   height: 40px !important;
+  background: url("/images/lottoryball.png");
   float: left;
   margin: 5px 10px;
   font-weight: bold;
   color: #fff;
-  background: #ff001d;
+}
+
+.myModal{
+  background: url("/images/get_lottory.jpg");
+  filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+  -moz-background-size:100% 100%;
+  background-size:100% 100%;
+}
+
+.modal-dialog{
+  color: #fff;
+  font-weight: bold;
+}
+.myModal li{
+  width: 25%;
+  float: left;
+  font-weight: bold;
 }

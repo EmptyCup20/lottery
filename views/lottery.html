@@ -1,34 +1,34 @@
 <%- include header.html %>
 <div class="container lottery-container">
-    <div class="step-div">
-        <input id="goMoreText" type="text" class="form-control lottery-text" value="<%=peopleNum %>"></input>
-        <button id="goMore" type="button" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off" data-text-start="抽奖" data-text-stop="结束" data-action="start">抽奖</button>
-        <button id="go" type="button" class="btn" data-text-start="单个抽奖" data-text-stop="结束" data-action="start"></button>
-    </div>
+
 
     <div id="lotterycontainer">
         <ul id="balls">
         </ul>
-        <div class="step-div">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">查看</button>
-            <button id="save" type="button" class="btn">保存</button>
-        </div>
+
+
+    </div>
+    <div class="step-div">
+        <button id="goMore" type="button" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-danger" autocomplete="off" data-text-start="抽奖" data-text-stop="结束" data-action="start">抽奖</button>
+    </div>
+    <div class="lucky-balls-div">
         <ul id="lucky-balls">
         </ul>
+    </div>
+    <div class="step-div">
+        <input id="goMoreText" type="text" class="form-control lottery-text" value="<%=peopleNum %>"></input>
+        <button id="go" type="button" class="btn" data-text-start="单个抽奖" data-text-stop="结束" data-action="start"></button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">查看</button>
+        <button id="save" type="button" class="btn">保存</button>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">中奖名单(奖品:<%=times[num].price%>)</h4>
-            </div>
-            <ul class="modal-body">
-            </ul>
-        </div>
+        <h1><%= times[num].name %> 中奖名单 (奖品:<%=times[num].price%>)</h1>
+        <ul class="modal-body">
+        </ul>
     </div>
 </div>
 <script src="/javascripts/seajs/sea.js"></script>

@@ -106,12 +106,13 @@ define(function(require, exports, module) {
           var user = that.users[i];
 
           if (user.name === name) {
-            if (!that.moveLucky() && that.luckyUser !== user) {
-              trigger.setAttribute('data-action', 'start');
-              trigger.innerHTML = trigger.getAttribute('data-text-start');
-              that.setLucky(user);
-            }
-            break;
+            //if (!that.moveLucky() && that.luckyUser !== user) {
+            //  trigger.setAttribute('data-action', 'start');
+            //  trigger.innerHTML = trigger.getAttribute('data-text-start');
+            //  that.setLucky(user);
+            //}
+            //break;
+            that.moveLucky()
           }
         }
       })

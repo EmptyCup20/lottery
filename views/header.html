@@ -11,7 +11,9 @@
         <div class="navbar-collapse collapse" role="navigation">
             <ul class="nav navbar-nav navbar-left hidden-sm">
                 <% times.forEach(function (time, index) { %>
-                    <li class="<% if(index==num) { %>active<%}%>"><a href="#"><%= time.name %></a></li>
+                    <% if(index==num) { %>
+                    <li class="active"><a href="#"><%= time.name %></a></li>
+                    <% } %>
                 <% }) %>
             </ul>
             <ul class="nav navbar-nav navbar-right hidden-sm">
